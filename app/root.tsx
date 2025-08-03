@@ -6,6 +6,7 @@ import "./app.css"
 import { ConvexReactClient } from "convex/react"
 import { ConvexProviderWithClerk } from "convex/react-clerk"
 import { ClerkProvider, useAuth } from "@clerk/clerk-react"
+import { ThemeProvider } from "~/components/theme-provider"
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -37,9 +38,11 @@ export default function Root() {
   return (
     <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
       <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
-        <App>
-          <Outlet />
-        </App>
+        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+          <App>
+            <Outlet />
+          </App>
+        </ThemeProvider>
       </ConvexProviderWithClerk>
     </ClerkProvider>
   )

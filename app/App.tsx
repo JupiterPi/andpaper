@@ -1,4 +1,5 @@
 import { UserButton } from "@clerk/clerk-react"
+import { DarkModeToggle } from "./components/dark-mode-toggle"
 
 export default function App({ children }: { children: React.ReactNode }) {
   return <>
@@ -6,6 +7,7 @@ export default function App({ children }: { children: React.ReactNode }) {
     <div className="border-b-1 border-black px-4 py-3 flex gap-3 items-center">
         <TitleWithLogo />
         <div className="flex-1"></div>
+        <DarkModeToggle />
         <div className="rounded-full border-1 size-[30px] flex justify-center items-center"><UserButton appearance={{ theme: "simple" }} /></div>
     </div>
 
