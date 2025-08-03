@@ -1,3 +1,4 @@
+import Journal from "~/components/Journal";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -13,6 +14,14 @@ export default function Home() {
 
     <div className="mt-4">
       <p className="text-gray-600">This is a simple example of a home page layout.</p>
+    </div>
+
+    <br></br><br></br>
+
+    <div className="w-full">
+      <div className="mx-5">
+        <Journal />
+      </div>
     </div>
   </main>;
 }
