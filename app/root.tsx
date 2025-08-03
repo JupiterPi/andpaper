@@ -3,7 +3,9 @@ import App from "./App"
 
 import type { Route } from "./+types/root"
 import "./app.css"
-import { ConvexReactClient, ConvexProvider } from "convex/react"
+import { ConvexReactClient } from "convex/react"
+import { ConvexProviderWithClerk } from "convex/react-clerk"
+import { ClerkProvider, useAuth } from "@clerk/clerk-react"
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -33,11 +35,13 @@ const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL)
 
 export default function Root() {
   return (
-    <ConvexProvider client={convex}>
-      <App>
-        <Outlet />
-      </App>
-    </ConvexProvider>
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+        <App>
+          <Outlet />
+        </App>
+      </ConvexProviderWithClerk>
+    </ClerkProvider>
   )
 }
 

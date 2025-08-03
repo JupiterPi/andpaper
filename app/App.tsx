@@ -1,10 +1,12 @@
+import { UserButton } from "@clerk/clerk-react"
+
 export default function App({ children }: { children: React.ReactNode }) {
   return <>
     {/* navbar */}
     <div className="border-b-1 border-black px-4 py-3 flex gap-3 items-center">
         <TitleWithLogo />
         <div className="flex-1"></div>
-        <div className="">(login)</div>
+        <div className="rounded-full border-1 size-[30px] flex justify-center items-center"><UserButton appearance={{ theme: "simple" }} /></div>
     </div>
 
     {children}

@@ -9,6 +9,7 @@
     "build:frontend": "react-router build"
   },
   "dependencies": {
+    "@clerk/clerk-react": "^5.38.1",
     "@react-router/node": "^7.7.1",
     "@react-router/serve": "^7.7.1",
     "classnames": "^2.5.1",
