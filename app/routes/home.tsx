@@ -3,18 +3,15 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Home" },
+    { title: "AndPaper" },
     { name: "description", content: "Welcome to andpaper!" },
   ];
 }
 
 export default function Home() {
   return <main className="flex flex-col justify-center items-center h-screen">
-    <h1 className="font-semibold text-xl">Welcome to andpaper!</h1>
-
-    <div className="mt-4">
-      <p className="text-gray-600">This is a simple example of a home page layout.</p>
-    </div>
+    <TitleWithLogo />
+    <p className="mt-3">Journal your D&D sessions with ease.</p>
 
     <br></br><br></br>
 
@@ -24,4 +21,13 @@ export default function Home() {
       </div>
     </div>
   </main>;
+}
+
+function TitleWithLogo() {
+  return (
+    <h1 className="font-semibold text-2xl flex items-center gap-2">
+      <img src="/andpaper-icon-dark.png" className="h-[25px] relative -top-[0px]" />
+      <span className="select-none">AndPaper</span>
+    </h1>
+  )
 }
