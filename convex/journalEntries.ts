@@ -8,6 +8,21 @@ export const getEntries = query({
     }
 })
 
+const validateText = (text: string) => {
+    if (!text || text.trim() === "") {
+        throw new Error("Text cannot be empty")
+    }
+}
+
+const validateIndentation = (indentation: number) => {
+    if (indentation < 0) {
+        throw new Error("Indentation cannot be negative")
+    }
+    if (indentation % 1 !== 0) {
+        throw new Error("Indentation must be an integer")
+    }
+}
+
 export const addEntry = mutation({
     args: {
         text: v.string(),
@@ -15,16 +30,23 @@ export const addEntry = mutation({
     },
     handler: async (ctx, args) => {
         const { text, indentation } = args
-        if (!text || text.trim() === "") {
-            throw new Error("Text cannot be empty")
-        }
-        if (indentation < 0) {
-            throw new Error("Indentation cannot be negative")
-        }
-        if (indentation % 1 !== 0) {
-            throw new Error("Indentation must be an integer")
-        }
+        validateText(text)
+        validateIndentation(indentation)
         return await ctx.db.insert("journalEntries", { text, indentation })
+    }
+})
+
+export const updateEntry = mutation({
+    args: {
+        id: v.id("journalEntries"),
+        text: v.string(),
+        indentation: v.number(),
+    },
+    handler: async (ctx, args) => {
+        const { id, text, indentation } = args
+        validateText(text)
+        validateIndentation(indentation)
+        await ctx.db.patch(id, { text, indentation })
     }
 })
 
