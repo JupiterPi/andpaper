@@ -14,7 +14,7 @@ export default function Home() {
   return <main className="flex flex-col justify-center items-center h-full pt-5">
     <Unauthenticated>
       <div className="w-full flex justify-center items-center">
-        <SignIn appearance={{ theme: "simple" }} />
+        <SignIn appearance={{ theme: "simple" }} withSignUp={true} />
       </div>
     </Unauthenticated>
     <AuthLoading>
